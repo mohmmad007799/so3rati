@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسب السعرات الحرارية</title>
+
+        <!-- تحميل سكربت الإعلانات -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        label {
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        input, select {
+            padding: 12px;
+            font-size: 1em;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #results-section {
+            text-align: center;
+            background-color: #e8f5e9;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+            display: none;
+        }
+
+        #calorie-chart {
+            max-width: 500px;
+            margin: 30px auto;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        td {
+            background-color: #fafafa;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .animation-fade {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* تصغير العناصر للعرض على الهواتف */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            form {
+                gap: 15px;
+            }
+
+            input, select {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+
+            button {
+                padding: 12px;
+                font-size: 1.1em;
+            }
+
+            table, th, td {
+                font-size: 1em;
+            }
+
+            #results-section {
+                padding: 20px;
+            }
+
+            #calorie-chart {
+                max-width: 350px;
+            }
+        }
+
+        /* إضافة بعض التنسيق لتحريك الأزرار للأسفل */
+        .buttons-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <header>
+            <h1>حاسب السعرات الحرارية</h1>
+        </header>
+
+        <!-- صفحة الإدخال -->
+        <section id="input-section">
+            <h2>أدخل بياناتك</h2>
+            <form id="calorie-form">
+                <label for="age">العمر:</label>
+                <input type="number" id="age" required>
+
+                <label for="weight">الوزن (كجم):</label>
+                <input type="number" id="weight" required>
+
+                <label for="height">الطول (سم):</label>
+                <input type="number" id="height" required>
+
+                <label for="gender">الجنس:</label>
+                <select id="gender">
+                    <option value="male">ذكر</option>
+                    <option value="female">أنثى</option>
+                </select>
+
+                <label for="activity-level">مستوى النشاط:</label>
+                <select id="activity-level">
+                    <option value="1.2">قليل النشاط (غير نشط)</option>
+                    <option value="1.375">نشاط خفيف (مشي يومي)</option>
+                    <option value="1.55">نشاط متوسط (تمارين خفيفة)</option>
+                    <option value="1.725">نشاط عالي (تمارين قوية)</option>
+                    <option value="1.9">نشاط مكثف (تمارين شاقة)</option>
+                </select>
+
+                <button type="submit">حساب السعرات الحرارية</button>
+            </form>
+        </section>
+
+        <!-- صفحة النتائج -->
+        <section id="results-section" class="hidden">
+            <h2>نتائج حساب السعرات الحرارية</h2>
+            <h3>السعرات الحرارية  : <span id="calories-result"></span> </h3>
+            <div id="calorie-analysis">
+                <h3>تحليل السعرات الحرارية</h3>
+                <canvas id="calorie-chart"></canvas>
+            </div>
+
+            <h3>تفاصيل النتيجة:</h3>
+            <table>
+                <tr>
+                    <th>المؤشر</th>
+                    <th>القيمة</th>
+                </tr>
+                <tr>
+                    <td>السعرات من البروتينات</td>
+                    <td id="protein-calories"></td>
+                </tr>
+                <tr>
+                    <td>السعرات من الكربوهيدرات</td>
+                    <td id="carb-calories"></td>
+                </tr>
+                <tr>
+                    <td>السعرات من الدهون</td>
+                    <td id="fat-calories"></td>
+                </tr>
+            </table>
+            
+            <!-- أزرار التنقل في الأسفل -->
+            <div class="buttons-container">
+                <button onclick="resetForm()">إعادة الحساب</button>
+                <button onclick="window.location.href='index.html'">الرجوع للرئيسية</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        document.getElementById('calorie-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // الحصول على المدخلات
+            const age = parseInt(document.getElementById('age').value);
+            const weight = parseInt(document.getElementById('weight').value);
+            const height = parseInt(document.getElementById('height').value);
+            const activityLevel = parseFloat(document.getElementById('activity-level').value);
+            const gender = document.getElementById('gender').value;
+
+            // التحقق من المدخلات
+            if (age <= 0 || weight <= 0 || height <= 0) {
+                alert("يرجى إدخال قيم صحيحة للسن، الوزن والطول.");
+                return;
+            }
+
+            // حساب السعرات الحرارية باستخدام معادلة Harris-Benedict
+            let bmr;
+            if (gender === "male") {
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5; // للرجال
+            } else {
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161; // للنساء
+            }
+
+            const totalCalories = bmr * activityLevel;
+
+            // حساب السعرات من البروتينات، الكربوهيدرات والدهون
+            const proteinCalories = (totalCalories * 0.2) / 4;
+            const carbCalories = (totalCalories * 0.5) / 4;
+            const fatCalories = (totalCalories * 0.3) / 9;
+
+            // عرض النتائج
+            document.getElementById('calories-result').textContent = Math.round(totalCalories);
+            document.getElementById('protein-calories').textContent = proteinCalories.toFixed(0) + " kcal";
+            document.getElementById('carb-calories').textContent = carbCalories.toFixed(0) + " kcal";
+            document.getElementById('fat-calories').textContent = fatCalories.toFixed(0) + " kcal";
+
+            // إخفاء صفحة الإدخال وإظهار صفحة النتائج
+            document.getElementById('input-section').style.display = 'none';
+            document.getElementById('results-section').style.display = 'block';
+
+            // رسم التحليل باستخدام Chart.js
+            renderChart(proteinCalories, carbCalories, fatCalories);
+        });
+
+        // رسم التحليل باستخدام Chart.js
+        function renderChart(proteinCalories, carbCalories, fatCalories) {
+            const ctx = document.getElementById('calorie-chart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['بروتينات', 'كربوهيدرات', 'دهون'],
+                    datasets: [{
+                        data: [proteinCalories, carbCalories, fatCalories],
+                        backgroundColor: ['#4caf50', '#ffeb3b', '#f44336'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw.toFixed(0) + ' kcal';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // إعادة تعيين النموذج
+        function resetForm() {
+            document.getElementById('age').value = '';
+            document.getElementById('weight').value = '';
+            document.getElementById('height').value = '';
+            document.getElementById('activity-level').value = '1.2';
+            document.getElementById('gender').value = 'male';
+
+            // إخفاء نتائج الحساب وعرض النموذج مرة أخرى
+            document.getElementById('results-section').style.display = 'none';
+            document.getElementById('input-section').style.display = 'block';
+        }
+    </script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8032800708373404"
+     crossorigin="anonymous"></script>
+     
+</body>
+</html>

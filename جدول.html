@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جدول السعرات الحرارية</title>
+  <style>
+    /* خلفية متدرجة وتأثير زجاجي */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #d2f9d2, #f0fff0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      text-align: center;
+    }
+
+    header {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #1c7c3e;
+      border-bottom: 2px solid #1c7c3e;
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+
+    /* خانة البحث */
+    #search {
+      padding: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 400px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .back-button {
+      background-color: #1c7c3e;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 25px;
+    }
+
+    .back-button:hover {
+      background-color: #155d30;
+      transform: scale(1.05);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      font-size: 18px;
+      text-align: center;
+    }
+
+    th {
+      background-color: rgba(28, 124, 62, 0.8);
+      color: white;
+    }
+
+    td {
+      background-color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* استجابة للشاشات الصغيرة */
+    @media (max-width: 768px) {
+      header {
+        font-size: 22px;
+      }
+
+      .back-button {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+
+      th, td {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px 15px;
+      }
+
+      .back-button {
+        width: 100%;
+      }
+
+      table {
+        font-size: 13px;
+      }
+
+      th, td {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>جدول السعرات الحرارية للأطعمة</header>
+
+    <!-- خانة البحث -->
+    <input type="text" id="search" placeholder="ابحث عن طعام" onkeyup="searchFunction()">
+
+    <br>
+    <button class="back-button" onclick="window.location.href='index.html'">العودة</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>اسم الطعام</th>
+          <th>السعرات (لكل 100غ)</th>
+        </tr>
+      </thead>
+      <tbody><tr><td>حبة مانجو</td><td>60 سعر حراري</td></tr>
+        <tr><td>موزة متوسطة</td><td>105 سعر حراري</td></tr>
+        <tr><td>تفاحة متوسطة</td><td>95 سعر حراري</td></tr>
+        <tr><td>برتقالة متوسطة</td><td>62 سعر حراري</td></tr>
+        <tr><td>كيوي</td><td>42 سعر حراري</td></tr>
+        <tr><td>فراولة</td><td>32 سعر حراري</td></tr>
+        <tr><td>عنب</td><td>69 سعر حراري</td></tr>
+        <tr><td>جوافة</td><td>68 سعر حراري</td></tr>
+        <tr><td>خوخ</td><td>58 سعر حراري</td></tr>
+        <tr><td>نكتارين</td><td>44 سعر حراري</td></tr>
+        <tr><td>دراق</td><td>39 سعر حراري</td></tr>
+        <tr><td>مشمش</td><td>48 سعر حراري</td></tr>
+        <tr><td>توت</td><td>57 سعر حراري</td></tr>
+        <tr><td>زبيب</td><td>299 سعر حراري</td></tr>
+        <tr><td>تمر</td><td>277 سعر حراري</td></tr>
+        <tr><td>رمان</td><td>83 سعر حراري</td></tr>
+        <tr><td>أناناس</td><td>50 سعر حراري</td></tr>
+        <tr><td>مانجو مجفف</td><td>321 سعر حراري</td></tr>
+        <tr><td>شوكولاتة داكنة</td><td>546 سعر حراري</td></tr>
+        <tr><td>شوكولاتة بالحليب</td><td>535 سعر حراري</td></tr>
+        <tr><td>عصير برتقال طازج</td><td>45 سعر حراري</td></tr>
+        <tr><td>عصير تفاح</td><td>47 سعر حراري</td></tr>
+        <tr><td>عصير جزر</td><td>41 سعر حراري</td></tr>
+        <tr><td>عصير رمان</td><td>83 سعر حراري</td></tr>
+        <tr><td>زيت الزيتون</td><td>119 سعر حراري</td></tr>
+        <tr><td>زيت عباد الشمس</td><td>120 سعر حراري</td></tr>
+        <tr><td>زيت جوز الهند</td><td>121 سعر حراري</td></tr>
+        <tr><td>زبدة</td><td>102 سعر حراري</td></tr>
+        <tr><td>جبن شيدر</td><td>402 سعر حراري</td></tr>
+        <tr><td>جبن موزاريلا</td><td>280 سعر حراري</td></tr>
+        <tr><td>جبن بارميزان</td><td>431 سعر حراري</td></tr>
+        <tr><td>لبن زبادي</td><td>59 سعر حراري</td></tr>
+        <tr><td>زبادي بالفواكه</td><td>120 سعر حراري</td></tr>
+        <tr><td>مكسرات متنوعة</td><td>600 سعر حراري</td></tr>
+        <tr><td>لوز</td><td>579 سعر حراري</td></tr>
+        <tr><td>جوز</td><td>654 سعر حراري</td></tr>
+        <tr><td>كاجو</td><td>553 سعر حراري</td></tr>
+        <tr><td>بندق</td><td>628 سعر حراري</td></tr>
+        <tr><td>فستق</td><td>560 سعر حراري</td></tr>
+        <tr><td>عين الجمل</td><td>654 سعر حراري</td></tr>
+        <tr><td>حمص</td><td>164 سعر حراري</td></tr>
+        <tr><td>عدس</td><td>116 سعر حراري</td></tr>
+        <tr><td>فاصوليا</td><td>127 سعر حراري</td></tr>
+        <tr><td>توفو</td><td>144 سعر حراري</td></tr>
+        <tr><td>لحم بقر مفروم</td><td>250 سعر حراري</td></tr>
+        <tr><td>دجاج مشوي</td><td>165 سعر حراري</td></tr>
+        <tr><td>دجاج مقلي</td><td>300 سعر حراري</td></tr>
+        <tr><td>لحم ضأن مشوي</td><td>294 سعر حراري</td></tr>
+        <tr><td>سمك سلمون</td><td>208 سعر حراري</td></tr>
+        <tr><td>سمك تونة</td><td>132 سعر حراري</td></tr>
+        <tr><td>جمبري</td><td>99 سعر حراري</td></tr>
+        <tr><td>دولفين</td><td>195 سعر حراري</td></tr>
+        <tr><td>محار</td><td>52 سعر حراري</td></tr>
+        <tr><td>دجاج مطبوخ</td><td>180 سعر حراري</td></tr>
+        <tr><td>بيض مسلوق</td><td>68 سعر حراري</td></tr>
+        <tr><td>بيض مقلي</td><td>92 سعر حراري</td></tr>
+        <tr><td>شوربة خضار</td><td>50 سعر حراري</td></tr>
+        <tr><td>شوربة دجاج</td><td>40 سعر حراري</td></tr>
+        <tr><td>شوربة عدس</td><td>116 سعر حراري</td></tr>
+        <tr><td>خضار مشوي</td><td>80 سعر حراري</td></tr>
+        <tr><td>مكرونة</td><td>131 سعر حراري</td></tr>
+        <tr><td>بيتزا</td><td>285 سعر حراري</td></tr>
+        <tr><td>شاورما</td><td>250 سعر حراري</td></tr>
+        <tr><td>برجر</td><td>295 سعر حراري</td></tr>
+        <tr><td>ساندويش</td><td>120 سعر حراري</td></tr>
+        <tr><td>شوربة طماطم</td><td>70 سعر حراري</td></tr>
+        <tr><td>بطاطس مقلية</td><td>312 سعر حراري</td></tr>
+        <tr><td>بطاطس مشوية</td><td>93 سعر حراري</td></tr>
+        <tr><td>خضار مطبوخ</td><td>50 سعر حراري</td></tr>
+        <tr><td>كرنب</td><td>25 سعر حراري</td></tr>
+        <tr><td>باذنجان</td><td>25 سعر حراري</td></tr>
+        <tr><td>جزر</td><td>41 سعر حراري</td></tr>
+        <tr><td>خيار</td><td>16 سعر حراري</td></tr>
+        <tr><td>طماطم</td><td>18 سعر حراري</td></tr>
+        <tr><td>فلفل أخضر</td><td>20 سعر حراري</td></tr>
+        <tr><td>سبانخ</td><td>23 سعر حراري</td></tr>
+        <tr><td>فاصوليا خضراء</td><td>31 سعر حراري</td></tr>
+        <tr><td>كرنب أحمر</td><td>31 سعر حراري</td></tr>
+        <tr><td>بروكلي</td><td>55 سعر حراري</td></tr>
+        <tr><td>قرنبيط</td><td>25 سعر حراري</td></tr>
+        <tr><td>جزر مخلل</td><td>17 سعر حراري</td></tr>
+        <tr><td>زهرش</td><td>20 سعر حراري</td></tr>
+        <tr><td>بازلاء</td><td>81 سعر حراري</td></tr>
+        <tr><td>كوسا</td><td>17 سعر حراري</td></tr>
+        <tr><td>شمر</td><td>31 سعر حراري</td></tr>
+        <tr><td>نعناع</td><td>44 سعر حراري</td></tr>
+        <tr><td>ريحان</td><td>23 سعر حراري</td></tr>
+        <tr><td>أعشاب البحر</td><td>45 سعر حراري</td></tr>
+        <tr><td>شبت</td><td>43 سعر حراري</td></tr>
+        <tr><td>ثوم</td><td>149 سعر حراري</td></tr>
+        <tr><td>بصل</td><td>40 سعر حراري</td></tr>
+        <tr><td>مخلل خيار</td><td>20 سعر حراري</td></tr>
+        <tr><td>شعير</td><td>352 سعر حراري</td></tr>
+        <tr><td>أرز بني</td><td>123 سعر حراري</td></tr>
+        <tr><td>أرز أبيض</td><td>130 سعر حراري</td></tr>
+        <tr><td>شوفان</td><td>389 سعر حراري</td></tr>
+        <tr><td>دقيق القمح</td><td>364 سعر حراري</td></tr>
+        <tr><td>خبز أبيض</td><td>265 سعر حراري</td></tr>
+        <tr><td>خبز أسمر</td><td>246 سعر حراري</td></tr>
+        <tr><td>كعك</td><td>330 سعر حراري</td></tr>
+        <tr><td>بسكويت</td><td>460 سعر حراري</td></tr>
+        <tr><td>كعك الشوكولاتة</td><td>486 سعر حراري</td></tr>
+        <tr><td>آيس كريم فانيليا</td><td>207 سعر حراري</td></tr>
+        <tr><td>آيس كريم شوكولاتة</td><td>210 سعر حراري</td></tr>
+        <tr><td>كريب</td><td>230 سعر حراري</td></tr>
+        <tr><td>بانكيك</td><td>227 سعر حراري</td></tr>
+        <tr><td>سميد</td><td>360 سعر حراري</td></tr>
+        <tr><td>معكرونة سباغيتي</td><td>131 سعر حراري</td></tr>
+        <tr><td>طاجين</td><td>250 سعر حراري</td></tr>
+        <tr><td>برغل</td><td>340 سعر حراري</td></tr>
+        <tr><td>فريك</td><td>320 سعر حراري</td></tr>
+        <tr><td>حمص مطبوخ</td><td>164 سعر حراري</td></tr>
+        <tr><td>شوربة عدس</td><td>116 سعر حراري</td></tr>
+        <tr><td>صوص طماطم</td><td>74 سعر حراري</td></tr>
+        <tr><td>صلصة سباغيتي</td><td>91 سعر حراري</td></tr>
+        <tr><td>كاتشب</td><td>110 سعر حراري</td></tr>
+        <tr><td>مايونيز</td><td>680 سعر حراري</td></tr>
+        <tr><td>مسطردة</td><td>66 سعر حراري</td></tr>
+        <tr><td>صلصة باربكيو</td><td>140 سعر حراري</td></tr>
+        <tr><td>زيتون أخضر</td><td>115 سعر حراري</td></tr>
+        <tr><td>زيتون أسود</td><td>115 سعر حراري</td></tr>
+        <tr><td>مخلل زيتون</td><td>50 سعر حراري</td></tr>
+        <tr><td>زبيب</td><td>299 سعر حراري</td></tr>
+        <tr><td>فواكه مجففة</td><td>250 سعر حراري</td></tr>
+        <tr><td>شوكولاتة بيضاء</td><td>539 سعر حراري</td></tr>
+        
+   </tbody>
+    </table>
+  </div>
+
+  <script>
+    function searchFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("search");
+      filter = input.value.toUpperCase();
+      table = document.querySelector("table");
+      tr = table.getElementsByTagName("tr");
+
+      for (i = 1; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0]; // عمود اسم الطعام
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
+
+  
+</body>
+</html>

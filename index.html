@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>موقع حساب السعرات</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e8f5e9;
+      color: #4a4a4a;
+    }
+
+    /* شريط علوي بزجاج شفاف (Glassmorphism) */
+    .glass-header {
+      background: rgba(56, 142, 60, 0.4);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.3rem 1rem;
+      border-radius: 0 0 15px 15px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .glass-header h2 {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .glass-header .navbar {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .glass-header .navbar a {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 0.3rem 0.8rem;
+      border-radius: 12px;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .glass-header .navbar a:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    .ad-image {
+      margin: 2rem 0;
+      width: 100%;
+      height: 200px;
+      background-image: url('https://via.placeholder.com/800x200?text=اعلان+هنا');
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background-color: #c8e6c9;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+      color: #388e3c;
+    }
+
+    /* التوافق مع الأجهزة */
+    @media (max-width: 768px) {
+      .glass-header {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: right;
+      }
+
+      .glass-header h2 {
+        width: 100%;
+        text-align: right;
+        font-size: 1.3rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .glass-header .navbar {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        width: 100%;
+      }
+
+      .glass-header .navbar a {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.9rem;
+      }
+
+      main {
+        padding: 0 0.5rem;
+      }
+
+      .ad-image {
+        height: 150px;
+      }
+
+      footer {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .glass-header h2 {
+        font-size: 1.8rem;
+      }
+
+      .glass-header .navbar a {
+        padding: 0.5rem 1rem;
+      }
+
+      footer {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- شريط علوي بتصميم زجاجي -->
+  <header class="glass-header">
+    <h2> سُعرتي</h2>
+    <nav class="navbar">
+      <a href="جدول.html"> جدول السعرات</a>
+      <a href="حساب السعرات.html"> حساب السعرات</a>
+      <a href="تواصل معنا.html"> تواصل معنا</a>
+    </nav>
+  </header>
+
+  <!-- المحتوى الرئيسي -->
+  <main>
+    <h1>
+        مرحبًا بك في موقع حساب السعرات الحرارية، موقع سهل الاستخدام يهدف إلى مساعدتك في معرفة احتياجاتك اليومية من الطاقة بناءً على بياناتك الشخصية.
+    </h1>
+
+    <h3>
+        من خلال هذا الموقع، يمكنك إدخال معلوماتك الأساسية مثل الطول، الوزن، العمر، ومستوى النشاط البدني، ليتم حساب السعرات الحرارية التي يحتاجها جسمك بدقة. كما نوفر لك قاعدة بيانات تضم معلومات غذائية لعدد من الأطعمة الشائعة، لمساعدتك في تتبع ما تتناوله يوميًا واتخاذ قرارات صحية مبنية على المعرفة.
+    </h3>
+
+    <p>
+      ما هي السعرات الحرارية ولماذا نحتاج لحسابها؟<br>
+      السعرات الحرارية هي وحدة قياس الطاقة التي يحصل عليها الجسم من الطعام والشراب، ويحتاجها للقيام بوظائفه الأساسية مثل التنفس، الحركة، الهضم، وحتى التفكير. كل نوع من المغذيات يزوّد الجسم بطاقة مختلفة، فالكربوهيدرات والبروتينات تحتوي على 4 سعرات حرارية لكل غرام، بينما الدهون تحتوي على 9 سعرات لكل غرام.
+    <br>
+      يختلف احتياج كل شخص من السعرات بحسب عدة عوامل مثل العمر، الجنس، الطول، الوزن، ومستوى النشاط البدني. من خلال معرفة هذه البيانات، يمكن تحديد عدد السعرات التي يحتاجها الجسم يوميًا للحفاظ على وزنه، أو لخسارة الوزن، أو لزيادة الكتلة العضلية.
+    <br>
+      حساب السعرات لا يساعد فقط في تنظيم الوزن، بل يمنحك وعيًا أكبر بما تأكله، ويشجعك على اختيار أطعمة ذات قيمة غذائية عالية بدلًا من السعرات الفارغة الموجودة في الأطعمة المصنعة. فليس كل السعرات متساوية؛ تناول 500 سعر حراري من الخضار والبروتين يختلف تمامًا عن تناول نفس الكمية من الحلويات أو المشروبات الغازية.
+    <br>
+      من خلال هذا الموقع، يمكنك حساب احتياجك اليومي من السعرات بسهولة، والوصول إلى معلومات غذائية تساعدك على اتخاذ قرارات صحية أفضل لحياتك.
+    </p>
+
+    <div class="ad-image"></div>
+
+  </main>
+
+  <!-- الفوتر -->
+  <footer>
+    جميع الحقوق محفوظة - موقع سُعرتي
+  </footer>
+
+</body>
+</html>
